@@ -295,7 +295,6 @@ impl NodeModulesResolver {
 
                                 // Relative file paths are sources for this package
                                 let source = if let Some(Component::CurDir) = components.next() {
-                                    dbg!(pkg_dir, k);
                                     let path = pkg_dir.join(k);
                                     if let Ok(file) = self
                                         .resolve_as_file(&path)
@@ -491,7 +490,6 @@ impl Resolve for NodeModulesResolver {
                         let pkg_base = to_absolute_path(&pkg_base).unwrap();
                         if let Some(item) = BROWSER_CACHE.get(&pkg_base) {
                             let value = item.value();
-                            dbg!(path);
                             let path = to_absolute_path(path).unwrap();
                             if value.ignores.contains(&path) {
                                 return Ok(FileName::Custom(path.display().to_string()));
